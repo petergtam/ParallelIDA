@@ -12,18 +12,19 @@
 
 class Node {
 public:
+    Node(int a, int b);
+    friend std::ostream& operator<<(std::ostream&, const Node*);
+    bool operator==(const Node& other) const;
+    int GetH() const;
+    void SetH(int h);
+    int GetX() const;
+    void SetX(int x);
+    int GetY() const;
+    void SetY(int y);
+private:
     int x;
     int y;
     int h;
-    Node(int a, int b);
-    std::ostream& operator<<(std::ostream& os) const{
-        os<<"Node \n";
-        os<<"["<<this->x<<","<<this->y<<"]";
-        return os;
-    }
-    bool operator==(const Node& other) const{
-        return (this->x==other.x && this->y==other.y);
-    }
 };
 
 #endif	/* NODE_H */

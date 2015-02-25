@@ -22,6 +22,7 @@ public:
     Node* getStart();
     int heuristic(Node*);
     int weight(Node*, Node*);
+    friend std::ostream& operator<<(std::ostream& os, const Maze* obj);
 private:
     int rows;
     int columns;

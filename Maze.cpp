@@ -29,6 +29,18 @@ Maze::Maze(int n, int m) {
     this->goal = CreateNode();
 }
 
+std::ostream& operator <<(std::ostream& os, const Maze* obj){
+    os<<"Maze\n";
+    for (int i = 0; i < obj->columns; i++) {
+        for (int j = 0; j < obj->rows; j++) {
+            os<<obj->maze[i][j];
+        }
+        os<<std::endl;
+    }
+    os<<std::endl;
+    return os;
+}
+
 Node* Maze::CreateNode() {
     int x, y;
     do {
@@ -43,7 +55,7 @@ Node* Maze::getStart() {
 }
 
 int Maze::heuristic(Node* n) {
-    return abs(n->x - goal->x) + abs(n->y - goal->y);
+    return abs(n->GetX() - goal->GetX()) + abs(n->GetY() - goal->GetY());
 }
 
 bool Maze::isGoal(Node* n) {
@@ -52,7 +64,7 @@ bool Maze::isGoal(Node* n) {
 
 std::vector<Node*> Maze::succ(Node* n) {
     std::vector<Node*> succ;
-    int x = n->x, y = n->y;
+    int x = n->GetX(), y = n->GetY();
     if (x - 1 >= 0 && maze[x - 1][y] != WALL) {
         succ.push_back(new Node(x - 1, y));
     }
@@ -71,6 +83,7 @@ std::vector<Node*> Maze::succ(Node* n) {
 int Maze::weight(Node*, Node*) {
     return 1;
 }
+
 
 
 
